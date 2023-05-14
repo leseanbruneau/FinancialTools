@@ -52,7 +52,11 @@ const question3 = () => {
 }
 
 const calcMortPayments = () => {
-  monthIntRate = intRate  / 12
+  if((intRate * 1) > 1) {
+    monthIntRate = (intRate / 100) / 12
+  } else {
+    monthIntRate = intRate / 12
+  }
 
   let prevMonthBal = 0
   let remainBal = 0
@@ -63,10 +67,11 @@ const calcMortPayments = () => {
   console.log(`\n--------------------------\n`);
   console.log(`Loan amount is...  ${loanAmt}`);
   console.log(`Number of Months for loan is...  ${nbrMonths}`);
-  console.log(`Interest rate for loan is...  ${intRate}`);
+  console.log(`Interest rate for loan is...  ${monthIntRate}`);
   console.log(`\n--------------------------\n`);
 
-  monthPay = Math.round(loanAmt * (monthIntRate * Math.pow((1 + monthIntRate), nbrMonths)) / (Math.pow((1 + monthIntRate),nbrMonths) - 1 ) ) 
+  //monthPay = Math.round(loanAmt * ((monthIntRate * Math.pow((1 + monthIntRate), nbrMonths)) / (Math.pow((1 + monthIntRate),nbrMonths) - 1 ) ) ) 
+  monthPay = Math.round(loanAmt * ((monthIntRate * Math.pow((1 + monthIntRate), nbrMonths)) / (Math.pow((1 + monthIntRate),nbrMonths) - 1 ) ) )
   console.log('Testing monthPay: ' + monthPay + '\n\n')
   
   console.log(' Mo  MoPay  MoPrinPd  MoIntPd  TotalIntPd  RemainBal \n')
